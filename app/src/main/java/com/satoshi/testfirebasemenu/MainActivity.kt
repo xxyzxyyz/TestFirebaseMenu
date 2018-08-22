@@ -90,11 +90,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         val button : ImageButton = rowLayout.getChildAt(column.key.toInt()-1) as ImageButton
                         val buttonData : ButtonData = column.getValue(ButtonData::class.java) as ButtonData
 
-                        //画像データのダウンロード
+                        //画像データのダウンロード先指定
                         val file : File = File(context.filesDir,buttonData.ImageName)
+                        Log.d("dev","ダウンロード先パス：　"+ file.path.toString())
 
                         //ファイル取得
-                        FirebaseStorage.getInstance().reference.child("Button/" + buttonData.ImageName).getFile(file)
+                        FirebaseStorage.getInstance().reference.child("ButtonImage/" + buttonData.ImageName).getFile(file)
 //取得成否による分岐                                .addOnSuccessListener(OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
 //                                })
 
